@@ -38,7 +38,7 @@
             </Grid.ColumnDefinitions>
 
 
-            <local:EmailListControl Grid.Column="0" />
+            <local:EmailListControl Grid.Column="0" Padding="10" />
             <ContentControl Grid.Column="1"  />
         </Grid>
     </Grid>
