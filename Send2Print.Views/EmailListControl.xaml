@@ -5,8 +5,53 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Send2Print.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="859.04" d:DesignWidth="400">
+     <Border BorderBrush="#6524e3" BorderThickness="7" CornerRadius="10" >
+         <Border.Background>
+             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                 <GradientStop Color="#FFC7C3DE" Offset="0.0" />
+                 <GradientStop Color="#FFDDD3FF" Offset="0.6" />
+                 <GradientStop Color="#FFC7C3DE" Offset="1.0" />
+             </LinearGradientBrush>
+         </Border.Background>
+         <StackPanel>
+
+            <Border Background="#6524e3" CornerRadius="5,5,0,0" Padding="5,10,10,10">
+                <TextBlock Text="Maile do druku" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Margin="0,5,5,5" />
+            </Border>
+
+            <Expander Header="Nowe" FontWeight="Bold" Foreground="White" Background="#0a9bd0" IsExpanded="True" Margin="5,10,5,2">
+                <Expander.HeaderTemplate>
+                    <DataTemplate>
+                        <Border Background="#0a9bd0" CornerRadius="5,5,0,0" Padding="5">
+                            <TextBlock Text="{Binding}" Foreground="White" FontWeight="Bold" />
+                        </Border>
+                    </DataTemplate>
+                </Expander.HeaderTemplate>
+                <Border BorderBrush="#0a9bd0" BorderThickness="2" CornerRadius="0,0,5,5" Background="#e0f7fa">
+                    <ListBox Background="#e0f7fa">
+                        <ListBoxItem Content="Nowy email 1" />
+                        <ListBoxItem Content="Nowy email 2" />
+                    </ListBox>
+                </Border>
+            </Expander>
+
+            <Expander Header="Wydrukowane" FontWeight="Bold" Foreground="White" Background="#0a9bd0" IsExpanded="True"
+                      Margin="5,2,5,5">
+                <Expander.HeaderTemplate>
+                    <DataTemplate>
+                        <Border Background="#0a9bd0" CornerRadius="5,5,0,0" Padding="5">
+                            <TextBlock Text="{Binding}" Foreground="White" FontWeight="Bold" />
+                        </Border>
+                    </DataTemplate>
+                </Expander.HeaderTemplate>
+                <Border BorderBrush="#0a9bd0" BorderThickness="2" CornerRadius="0,0,5,5" Background="#e0f7fa">
+                    <ListBox Background="#e0f7fa">
+                        <ListBoxItem Content="Wydrukowany email 1" />
+                        <ListBoxItem Content="Wydrukowany email 2" />
+                    </ListBox>
+                </Border>
+            </Expander>
+        </StackPanel>
+    </Border>
 </UserControl>
