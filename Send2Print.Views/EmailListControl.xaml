@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Send2Print.Views"
              mc:Ignorable="d" 
              d:DesignHeight="859.04" d:DesignWidth="400">
-     <Border BorderBrush="#6524e3" BorderThickness="7" CornerRadius="10" >
+     <Border BorderBrush="#6524e3" BorderThickness="0" CornerRadius="12" >
          <Border.Background>
              <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                  <GradientStop Color="#FFC7C3DE" Offset="0.0" />
@@ -16,42 +16,123 @@
          </Border.Background>
          <StackPanel>
 
-            <Border Background="#6524e3" CornerRadius="5,5,0,0" Padding="5,10,10,10">
-                <TextBlock Text="Maile do druku" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Margin="0,5,5,5" />
-            </Border>
+             <Border CornerRadius="12,12,0,0" Padding="15,5">
+                 <Border.Background>
+                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                         <GradientStop Color="#6524e3" Offset="0.0" />
+                         <GradientStop Color="#7a3df3" Offset="0.5" />
+                         <GradientStop Color="#6524e3" Offset="1.0" />
+                     </LinearGradientBrush>
+                 </Border.Background>
 
-            <Expander Header="Nowe" FontWeight="Bold" Foreground="White" Background="#0a9bd0" IsExpanded="True" Margin="5,10,5,2">
-                <Expander.HeaderTemplate>
-                    <DataTemplate>
-                        <Border Background="#0a9bd0" CornerRadius="5,5,0,0" Padding="5">
-                            <TextBlock Text="{Binding}" Foreground="White" FontWeight="Bold" />
-                        </Border>
-                    </DataTemplate>
-                </Expander.HeaderTemplate>
-                <Border BorderBrush="#0a9bd0" BorderThickness="2" CornerRadius="0,0,5,5" Background="#e0f7fa">
-                    <ListBox Background="#e0f7fa">
-                        <ListBoxItem Content="Nowy email 1" />
-                        <ListBoxItem Content="Nowy email 2" />
-                    </ListBox>
-                </Border>
-            </Expander>
+                 <TextBlock Text="Maile do druku" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Margin="0,5,5,5" />
+             </Border>
 
-            <Expander Header="Wydrukowane" FontWeight="Bold" Foreground="White" Background="#0a9bd0" IsExpanded="True"
-                      Margin="5,2,5,5">
-                <Expander.HeaderTemplate>
-                    <DataTemplate>
-                        <Border Background="#0a9bd0" CornerRadius="5,5,0,0" Padding="5">
-                            <TextBlock Text="{Binding}" Foreground="White" FontWeight="Bold" />
-                        </Border>
-                    </DataTemplate>
-                </Expander.HeaderTemplate>
-                <Border BorderBrush="#0a9bd0" BorderThickness="2" CornerRadius="0,0,5,5" Background="#e0f7fa">
-                    <ListBox Background="#e0f7fa">
-                        <ListBoxItem Content="Wydrukowany email 1" />
-                        <ListBoxItem Content="Wydrukowany email 2" />
-                    </ListBox>
-                </Border>
-            </Expander>
+
+             <Expander Header="Wszystkie skrzynki" FontWeight="Bold" Foreground="White"  Background="#0a9bd0" IsExpanded="True" Margin="10,2">
+                 <Expander.HeaderTemplate>
+                     <DataTemplate >
+                         <TextBlock Text="{Binding}" Foreground="White" FontWeight="Bold" Padding="10" />
+                     </DataTemplate>
+                 </Expander.HeaderTemplate>
+
+                 <ListBox Background="#e0f7fa">
+                     <TextBlock FontWeight="Bold">
+                         <Run Text="Mail1@mail.com"/>
+                         <Run Text=" - "/>
+                         <Run Text="Mail title 1 "/>
+                     </TextBlock>
+                     <TextBlock FontWeight="Bold">
+                         <Run Text="Mail2@mail.com"/>
+                         <Run Text=" - "/>
+                         <Run Text="Mail title 2 "/>
+                     </TextBlock>
+                     <TextBlock FontWeight="Bold">
+                         <Run Text="Mail3@mail.com"/>
+                         <Run Text=" - "/>
+                         <Run Text="Mail title 3 "/>
+                     </TextBlock>
+                 </ListBox>
+             </Expander>
+
+             <Expander Header="Skrzynka 1" FontWeight="Bold" Foreground="White"  Background="#0a9bd0" IsExpanded="True" Margin="10,2">
+                 <Expander.HeaderTemplate>
+                     <DataTemplate >
+                         <TextBlock Text="{Binding}" Foreground="White" FontWeight="Bold" Padding="10" />
+                     </DataTemplate>
+                 </Expander.HeaderTemplate>
+
+                 <ListBox Background="#e0f7fa">
+                     <TextBlock FontWeight="Bold">
+                         <Run Text="Mail1@mail.com"/>
+                         <Run Text=" - "/>
+                         <Run Text="Mail title 1 "/>
+                     </TextBlock>
+                     <TextBlock FontWeight="Bold">
+                         <Run Text="Mail2@mail.com"/>
+                         <Run Text=" - "/>
+                         <Run Text="Mail title 2 "/>
+                     </TextBlock>
+                     <TextBlock FontWeight="Bold">
+                         <Run Text="Mail3@mail.com"/>
+                         <Run Text=" - "/>
+                         <Run Text="Mail title 3 "/>
+                     </TextBlock>
+                 </ListBox>
+             </Expander>
+
+             <Expander Header="Skrzynka 2" FontWeight="Bold" Foreground="White"  Background="#0a9bd0" IsExpanded="True" Margin="10,2">
+                 <Expander.HeaderTemplate>
+                     <DataTemplate >
+                         <TextBlock Text="{Binding}" Foreground="White" FontWeight="Bold" Padding="10" />
+                     </DataTemplate>
+                 </Expander.HeaderTemplate>
+
+                 <ListBox Background="#e0f7fa">
+                     <TextBlock FontWeight="Bold">
+                         <Run Text="Mail1@mail.com"/>
+                         <Run Text=" - "/>
+                         <Run Text="Mail title 1 "/>
+                     </TextBlock>
+                     <TextBlock FontWeight="Bold">
+                         <Run Text="Mail2@mail.com"/>
+                         <Run Text=" - "/>
+                         <Run Text="Mail title 2 "/>
+                     </TextBlock>
+                     <TextBlock FontWeight="Bold">
+                         <Run Text="Mail3@mail.com"/>
+                         <Run Text=" - "/>
+                         <Run Text="Mail title 3 "/>
+                     </TextBlock>
+                 </ListBox>
+             </Expander>
+
+             <Expander Header="Wydrukowane" FontWeight="Bold" Foreground="White"  Background="#0a9bd0" IsExpanded="True" Margin="10,2">
+                 <Expander.HeaderTemplate>
+                     <DataTemplate >
+                         <TextBlock Text="{Binding}" Foreground="White" FontWeight="Bold" Padding="10" />
+                     </DataTemplate>
+                 </Expander.HeaderTemplate>
+
+                 <ListBox Background="#e0f7fa">
+                     <TextBlock FontWeight="Bold">
+                         <Run Text="Mail1@mail.com"/>
+                         <Run Text=" - "/>
+                         <Run Text="Mail title 1 "/>
+                     </TextBlock>
+                     <TextBlock FontWeight="Bold">
+                         <Run Text="Mail2@mail.com"/>
+                         <Run Text=" - "/>
+                         <Run Text="Mail title 2 "/>
+                     </TextBlock>
+                     <TextBlock FontWeight="Bold">
+                         <Run Text="Mail3@mail.com"/>
+                         <Run Text=" - "/>
+                         <Run Text="Mail title 3 "/>
+                     </TextBlock>
+                 </ListBox>
+             </Expander>
+
         </StackPanel>
     </Border>
 </UserControl>
