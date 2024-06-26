@@ -5,8 +5,45 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Send2Print.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="884" d:DesignWidth="1000">
     <Grid>
-            
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="MailBodyManagerGrid" Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="11*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid x:Name="MailBodyListGrid" Grid.Column="0">
+
+                </Grid>
+                <Grid x:Name="MailBodyContentGrid" Grid.Column="1">
+
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="MailAttachmentsManagerGrid" Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="11*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid x:Name="MailAttachmentListGrid" Grid.Column="0">
+
+                </Grid>
+                <Grid x:Name="MailAttachmentPreviewGrid" Grid.Column="1">
+
+                </Grid>
+            </Grid>
+        </Grid>
+
     </Grid>
 </UserControl>
