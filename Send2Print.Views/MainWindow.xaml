@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Send2Print.Views"
+        xmlns:viewModels="clr-namespace:Send2Print.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1400"
         WindowStartupLocation="CenterScreen" ResizeMode="CanResize" Background="#FFE2E6FB">
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
@@ -21,10 +25,9 @@
                 <Separator/>
                 <MenuItem Header="E_xit"/>
             </MenuItem>
-            <MenuItem Header="Tools">
-                <MenuItem Header="Tool-1"/>
-                <MenuItem Header="Tool-2"/>
-                <MenuItem Header="Tool-3"/>
+
+            <MenuItem Header="Opcje">
+                <MenuItem Header="Opcje" Command="{Binding OpenOptionsCommand}"/>
             </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="_About"/>

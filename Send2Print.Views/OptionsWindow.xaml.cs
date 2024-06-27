@@ -3,11 +3,11 @@
 namespace Send2Print.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logika interakcji dla klasy OptionsWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class OptionsWindow : Window
     {
-        public MainWindow()
+        public OptionsWindow()
         {
             InitializeComponent();
         }

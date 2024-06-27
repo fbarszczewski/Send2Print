@@ -1,0 +1,47 @@
+﻿<Window x:Class="Send2Print.Views.OptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Send2Print.Views"
+        mc:Ignorable="d"
+        Title="OptionsWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Main">
+                <Grid Margin="10">
+                    <StackPanel>
+                        <TextBlock Text="Powiadomienia" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <CheckBox Content="Włącz powiadomienia" Margin="0,0,0,10"/>
+                        <CheckBox Content="Odtwarzaj dźwięk przy nowym mailu" Margin="0,0,0,10"/>
+                        
+                        <TextBlock Text="Interfejs użytkownika" FontWeight="Bold" Margin="20,20,0,10"/>
+                        <CheckBox Content="Pokaż liczbę nieprzeczytanych wiadomości na ikonie" Margin="20,0,0,10"/>
+                        <CheckBox Content="Użyj ciemnego motywu" Margin="20,0,0,10"/>
+                        
+                        <TextBlock Text="Aktualizacje" FontWeight="Bold" Margin="20,20,0,10"/>
+                        <CheckBox Content="Automatycznie sprawdzaj aktualizacje" Margin="20,0,0,10"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Konta e-mail">
+                <Grid Margin="10">
+                    <StackPanel>
+                        <TextBlock Text="Zarządzanie kontami e-mail" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <ListBox x:Name="EmailAccountsList" Height="200" Margin="0,0,0,10">
+                            <ListBoxItem Content="konto1@example.com"/>
+                            <ListBoxItem Content="konto2@example.com"/>
+                        </ListBox>
+                        
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Content="Dodaj konto" Width="100" Margin="0,0,5,0"/>
+                            <Button Content="Edytuj konto" Width="100" Margin="0,0,5,0"/>
+                            <Button Content="Usuń konto" Width="100"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
