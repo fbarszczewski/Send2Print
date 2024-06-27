@@ -21,7 +21,48 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid x:Name="MailBodyListGrid" Grid.Column="0">
-
+                    <Border BorderBrush="#6524e3" BorderThickness="0" CornerRadius="12">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FFC7C3DE" Offset="0.0" />
+                                <GradientStop Color="#FFDDD3FF" Offset="0.6" />
+                                <GradientStop Color="#FFC7C3DE" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <StackPanel>
+                            <Border CornerRadius="12,12,0,0" Padding="15,5">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Color="#6524e3" Offset="0.0" />
+                                        <GradientStop Color="#7a3df3" Offset="0.5" />
+                                        <GradientStop Color="#6524e3" Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <TextBlock Text="Zaznaczone maile" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Margin="0,5,5,5" />
+                            </Border>
+                            <Border Padding="10">
+                                <StackPanel>
+                                    <ListBox Background="#e0f7fa">
+                                        <TextBlock FontWeight="Bold">
+                                            <Run Text="Mail1@mail.com" />
+                                            <Run Text=" - " />
+                                            <Run Text="Mail content 1" />
+                                        </TextBlock>
+                                        <TextBlock FontWeight="Bold">
+                                            <Run Text="Mail2@mail.com" />
+                                            <Run Text=" - " />
+                                            <Run Text="Mail content 2" />
+                                        </TextBlock>
+                                        <TextBlock FontWeight="Bold">
+                                            <Run Text="Mail3@mail.com" />
+                                            <Run Text=" - " />
+                                            <Run Text="Mail content 3" />
+                                        </TextBlock>
+                                    </ListBox>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Border>
                 </Grid>
                 <Grid x:Name="MailBodyContentGrid" Grid.Column="1">
 

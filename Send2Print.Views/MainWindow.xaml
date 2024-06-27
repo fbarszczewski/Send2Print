@@ -40,7 +40,7 @@
 
             <local:EmailListControl Grid.Column="0" Padding="10" Width="412" />
             <!--<ContentControl Grid.Column="1"  />-->
-            <local:EmailDetailControl Grid.Column="1"  />
+            <local:EmailDetailControl Grid.Column="1" Padding="10"  />
         </Grid>
     </Grid>
 
