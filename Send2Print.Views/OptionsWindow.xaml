@@ -5,40 +5,123 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Send2Print.Views"
         mc:Ignorable="d"
-        Title="OptionsWindow" Height="450" Width="800">
+        Title="OptionsWindow" Height="500" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,5,0,5"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005A9E"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <TabControl>
-            <TabItem Header="Main">
-                <Grid Margin="10">
-                    <StackPanel>
-                        <TextBlock Text="Powiadomienia" FontWeight="Bold" Margin="0,0,0,10"/>
-                        <CheckBox Content="Włącz powiadomienia" Margin="0,0,0,10"/>
-                        <CheckBox Content="Odtwarzaj dźwięk przy nowym mailu" Margin="0,0,0,10"/>
-                        
-                        <TextBlock Text="Interfejs użytkownika" FontWeight="Bold" Margin="20,20,0,10"/>
-                        <CheckBox Content="Pokaż liczbę nieprzeczytanych wiadomości na ikonie" Margin="20,0,0,10"/>
-                        <CheckBox Content="Użyj ciemnego motywu" Margin="20,0,0,10"/>
-                        
-                        <TextBlock Text="Aktualizacje" FontWeight="Bold" Margin="20,20,0,10"/>
-                        <CheckBox Content="Automatycznie sprawdzaj aktualizacje" Margin="20,0,0,10"/>
+            <TabItem Header="Ogólne">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Lokalizacja folderu roboczego:" FontWeight="Bold" FontSize="16" Margin="0,0,0,20"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Width="400"/>
+                        <Button Content="Przeglądaj" Width="100" HorizontalAlignment="Left" Margin="10,0,0,0"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
-            
-            <TabItem Header="Konta e-mail">
-                <Grid Margin="10">
-                    <StackPanel>
-                        <TextBlock Text="Zarządzanie kontami e-mail" FontWeight="Bold" Margin="0,0,0,10"/>
-                        <ListBox x:Name="EmailAccountsList" Height="200" Margin="0,0,0,10">
-                            <ListBoxItem Content="konto1@example.com"/>
-                            <ListBoxItem Content="konto2@example.com"/>
+            <TabItem Header="Skrzynki pocztowe" Margin="24,-1,-24,0" Height="20" VerticalAlignment="Top">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <ListBox x:Name="MailboxList" Grid.Column="0" Margin="0,0,10,0" BorderBrush="#007ACC" BorderThickness="1">
+                            <ListBoxItem Content="Skrzynka 1" />
+                            <ListBoxItem Content="Skrzynka 2" />
+                            <ListBoxItem Content="Skrzynka 3" />
                         </ListBox>
-                        
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Content="Dodaj konto" Width="100" Margin="0,0,5,0"/>
-                            <Button Content="Edytuj konto" Width="100" Margin="0,0,5,0"/>
-                            <Button Content="Usuń konto" Width="100"/>
-                        </StackPanel>
+                        <ScrollViewer Grid.Column="1" Margin="10,0,0,0">
+                            <StackPanel Margin="0,0,10,0">
+                                <TextBlock Text="Szczegóły skrzynki" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Adres e-mail: " Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right"/>
+                                    <TextBox x:Name="MailboxEmail" Grid.Column="1" Grid.Row="0"/>
+                                    <TextBlock Text="Hasło: " Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right"/>
+                                    <PasswordBox x:Name="MailboxPassword" Grid.Column="1" Grid.Row="1"/>
+                                    <TextBlock Text="Serwer poczty przychodzącej" FontWeight="Bold" Grid.Column="0" Grid.Row="2" Margin="0,10,0,0"/>
+                                    <TextBlock Text="Typ serwera: " Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right"/>
+                                    <ComboBox x:Name="IncomingServerType" Grid.Column="1" Grid.Row="3">
+                                        <ComboBoxItem Content="IMAP" />
+                                        <ComboBoxItem Content="POP3" />
+                                    </ComboBox>
+                                    <TextBlock Text="Adres serwera: " Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right"/>
+                                    <TextBox x:Name="IncomingServerAddress" Grid.Column="1" Grid.Row="4"/>
+                                    <TextBlock Text="Port serwera: " Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right"/>
+                                    <TextBox x:Name="IncomingServerPort" Grid.Column="1" Grid.Row="5"/>
+                                    <TextBlock Text="Nazwa użytkownika: " Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right"/>
+                                    <TextBox x:Name="IncomingServerUsername" Grid.Column="1" Grid.Row="6"/>
+                                    <TextBlock Text="Serwer poczty wychodzącej" FontWeight="Bold" Grid.Column="0" Grid.Row="7" Margin="0,10,0,0"/>
+                                    <TextBlock Text="Adres serwera: " Grid.Column="0" Grid.Row="8" HorizontalAlignment="Right"/>
+                                    <TextBox x:Name="OutgoingServerAddress" Grid.Column="1" Grid.Row="8"/>
+                                    <TextBlock Text="Port serwera: " Grid.Column="0" Grid.Row="9" HorizontalAlignment="Right"/>
+                                    <TextBox x:Name="OutgoingServerPort" Grid.Column="1" Grid.Row="9"/>
+                                    <TextBlock Text="Protokół szyfrowania: " Grid.Column="0" Grid.Row="10" HorizontalAlignment="Right"/>
+                                    <ComboBox x:Name="EncryptionProtocol" Grid.Column="1" Grid.Row="10">
+                                        <ComboBoxItem Content="SSL" />
+                                        <ComboBoxItem Content="TLS" />
+                                    </ComboBox>
+                                    <TextBlock Text="Nazwa użytkownika: " Grid.Column="0" Grid.Row="11" HorizontalAlignment="Right"/>
+                                    <TextBox x:Name="OutgoingServerUsername" Grid.Column="1" Grid.Row="11"/>
+                                    <CheckBox x:Name="RequiresAuthentication" Content="Wymaga uwierzytelniania" Grid.Column="1" Grid.Row="12" Margin="0,10,0,0"/>
+                                </Grid>
+                                <Button Content="Zapisz zmiany" Width="150" HorizontalAlignment="Left" Margin="0,20,0,0"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Dodaj nową skrzynkę" Width="200" />
                     </StackPanel>
                 </Grid>
             </TabItem>
