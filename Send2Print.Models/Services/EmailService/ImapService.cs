@@ -4,12 +4,18 @@ using MimeKit;
 using Send2Print.Models.Entities;
 using Send2Print.Models.Services.EmailService.Models;
 
-namespace Send2Print.Models.Services.EmailService.Interfaces;
+namespace Send2Print.Models.Services.EmailService;
 
-public class ImapService(EmailServerConfig emailConfig) 
+public class ImapService
 {
-    private readonly EmailServerConfig _emailConfig = emailConfig;
+    private readonly EmailServerConfig _emailConfig;
     private ImapClient _imapClient = null!;
+
+    public ImapService(EmailServerConfig emailConfig)
+    {
+        _emailConfig = emailConfig;
+    }
+
     public async Task ConnectAsync()
     {
         _imapClient = new ImapClient();
@@ -23,17 +29,7 @@ public class ImapService(EmailServerConfig emailConfig)
         await _imapClient.DisconnectAsync(true);
         _imapClient.Dispose();
     }
-    
-    public async Task<IEnumerable<string>> GetFoldersAsync()
-    {
-        var personalNamespace = _imapClient.PersonalNamespaces[0];
-        var folders = await _imapClient.GetFoldersAsync(personalNamespace);
-
-        return folders.Select(f => f.Name);
-    }
-
-
-    public async IAsyncEnumerable<MimeMessage> GetMessagesAsync(string folderName, int startIndex, int count)
+    public async IAsyncEnumerable<MimeMessage> FetchEmailsAsync(string folderName, int startIndex, int count)
     {
         var folder = await _imapClient.GetFolderAsync(folderName);
         await folder.OpenAsync(FolderAccess.ReadOnly);
@@ -44,6 +40,17 @@ public class ImapService(EmailServerConfig emailConfig)
             yield return message;
         }
     }
+    
+    public async Task<IEnumerable<string>> GetFoldersAsync()
+    {
+        var personalNamespace = _imapClient.PersonalNamespaces[0];
+        var folders = await _imapClient.GetFoldersAsync(personalNamespace);
+
+        return folders.Select(f => f.Name);
+    }
+
+
+
 
     public async Task MarkAsReadAsync(string messageId, string folderName)
     {
