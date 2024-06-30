@@ -2,6 +2,8 @@
 
 public class EmailAttachment
 {
+    public required string MessageId { get; init; } = string.Empty;
+
     public required string FileName { get; init; } = string.Empty;
     public required string FilePath { get; init; } = string.Empty;
     public long Size { get; set; }

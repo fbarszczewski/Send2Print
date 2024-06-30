@@ -7,13 +7,13 @@ using Send2Print.Models.Services.EmailService.Models;
 
 namespace Send2Print.Models.Services.EmailService;
 
-public class EmailService : IEmailService
+public class EmailService 
 {
     private List<ImapClient> _imapClientList;
     private List<SmtpClient> _smtpClientList;
     private bool _isConnected = false;
 
-    public void Connect(EmailMultiConfig configs)
+    public void Connect(EmailServerConfigs configs)
     {
         _imapClientList = new List<ImapClient>();
         _smtpClientList = new List<SmtpClient>();
@@ -36,44 +36,49 @@ public class EmailService : IEmailService
         _isConnected = true;
     }
 
-    public async Task<IEnumerable<MailEntity>> GetEmailsAsync(DateTime startDate, DateTime endDate)
+    public async IAsyncEnumerable<EmailMessageInfo> GetMessagesAsync(string folderName, int startIndex, int count)
     {
-        if (!_isConnected)
-            throw new InvalidOperationException("EmailService is not connected.");
+        var folder = await _client.GetFolderAsync(folderName);
+        await folder.OpenAsync(FolderAccess.ReadOnly);
 
-        var emails = new List<MailEntity>();
-
-        foreach (var imapClient in _imapClientList)
+        for (int i = startIndex; i < startIndex + count; i++)
         {
-            var inbox = imapClient.Inbox;
-            await inbox.OpenAsync(FolderAccess.ReadOnly);
-            var query = SearchQuery.DeliveredAfter(startDate).And(SearchQuery.DeliveredBefore(endDate));
-            var uids = await inbox.SearchAsync(query);
-
-            foreach (var uid in uids)
+            var message = await folder.GetMessageAsync(i);
+            var basicInfo = new EmailMessageInfo
             {
-                var message = await inbox.GetMessageAsync(uid);
-                emails.Add(new MailEntity
+                Subject = message.Subject,
+                From = message.From.ToString(),
+                TextBody = message.TextBody
+            };
+
+            yield return basicInfo;
+
+            var attachmentPaths = new List<string>();
+            if (message.Attachments != null)
+            {
+                foreach (var attachment in message.Attachments)
                 {
-
-                    Id = message.MessageId,
-                    Sender = message.From.ToString(),
-                    To = message.To.Select(to => to.ToString()).ToArray(),
-                    Cc = message.Cc.Select(cc => cc.ToString()).ToArray(),
-                    Subject = message.Subject,
-                    Body = message.TextBody,
-                    HtmlBody = message.HtmlBody,
-                    HtmlBody = message.,
-                    Date = message.Date.DateTime
-                    //,Attachments = GetAttachments(message) //TODO: Implement GetAttachments
-                });
+                    if (attachment is MimePart mimePart)
+                    {
+                        var filePath = Path.Combine("path/to/attachments", mimePart.FileName);
+                        using (var stream = File.Create(filePath))
+                        {
+                            await mimePart.Content.DecodeToAsync(stream);
+                        }
+                        attachmentPaths.Add(filePath);
+                    }
+                }
             }
-        }
 
-        return emails;
+            basicInfo.AttachmentPaths = attachmentPaths;
+            yield return basicInfo;
+
+            basicInfo.FullMessage = message;
+            yield return basicInfo;
+        }
     }
 
-    public async Task<MailEntity> GetEmailAsync(string id)
+    public async Task<EmailEntity> GetEmailAsync(string id)
     {
         if (!_isConnected)
             throw new InvalidOperationException("EmailService is not connected.");
@@ -89,7 +94,7 @@ public class EmailService : IEmailService
             foreach (var uid in uids)
             {
                 var message = await inbox.GetMessageAsync(uid);
-                return new MailEntity
+                return new EmailEntity
                 {
                     Id = message.MessageId,
                     Sender = message.From.ToString(),

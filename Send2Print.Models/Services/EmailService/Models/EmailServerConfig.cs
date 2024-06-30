@@ -1,6 +1,6 @@
 ﻿namespace Send2Print.Models.Services.EmailService.Models;
 
-public class EmailConfig
+public class EmailServerConfig
 {
     public string ImapServer { get; set; }
     public int ImapPort { get; set; }
